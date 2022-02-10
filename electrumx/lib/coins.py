@@ -4011,3 +4011,43 @@ class Syscoin(AuxPowMixin, Coin):
     RPC_PORT = 8370
     REORG_LIMIT = 2000
     CHUNK_SIZE = 360
+
+    
+# Source: https://github.com/sumcash-project/sumcash
+class Sumcash(Coin):
+    NAME = "Sumcash"
+    SHORTNAME = "SUMC"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("f588b21f") # √
+    XPRV_VERBYTES = bytes.fromhex("f588ade5") # √
+    P2PKH_VERBYTE = bytes.fromhex("3f") #63 √
+    P2SH_VERBYTES = (bytes.fromhex("7d"),) #183 √
+    WIF_BYTE = bytes.fromhex("bb") #187 √
+    GENESIS_HASH = ('000000d384b2c2ee13d10c0dc9830526'
+                    '35e304ea8631136c81de0b76181891f5') #√
+    DESERIALIZER = lib_tx.DeserializerTxTimeSegWit
+    DAEMON = daemon.FakeEstimateFeeDaemon
+    ESTIMATE_FEE = 0.001 #√
+    RELAY_FEE = 0.01 #√
+    TX_COUNT = 13341 #√
+    TX_COUNT_HEIGHT = 7669 #√
+    TX_PER_BLOCK = 2 #√
+    RPC_PORT = 9998 #√
+    REORG_LIMIT = 800
+
+    PEERS = []
+
+    #VALUE_PER_COIN = 1000000
+
+
+class SumcashTestnet(Sumcash):
+    NAME = "SumcashTestnet"
+    SHORTNAME = "tSUMC"
+    NET = "testnet"
+    P2PKH_VERBYTE = bytes.fromhex("6f")
+    P2SH_VERBYTES = (bytes.fromhex("c4"),)
+    WIF_BYTE = bytes.fromhex("ef")
+    GENESIS_HASH = ('00000001f757bb737f6596503e17cd17'
+                    'b0658ce630cc727c0cca81aec47c9f06')
+    ESTIMATE_FEE = 0.001
+    PEERS = []    
